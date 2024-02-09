@@ -1,5 +1,4 @@
 from django.views.decorators.csrf import csrf_protect
-from django.utils.decorators import method_decorator
 from django.contrib.auth import login, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.views import LoginView
@@ -10,7 +9,6 @@ from django.views.generic import FormView, RedirectView
 
 import config.settings as setting
 
-@method_decorator(csrf_protect, name='dispatch')
 class LoginFormView(LoginView):
     template_name='login.html'
 
@@ -30,4 +28,3 @@ class LogoutView(RedirectView):
     def dispatch(self, request, *args, **kwargs):
         logout(request)
         return super().dispatch(request, *args, **kwargs)
-
